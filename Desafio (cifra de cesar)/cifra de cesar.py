@@ -1,17 +1,14 @@
 import json
 import hashlib
 
-# print(r.json())
 with open('answer.json', 'w') as json_file:
     json.dump(json_file.json(), json_file, indent=4)
     
 with open('answer.json', 'r') as json_file:
     answer = json.load(json_file)
-numero_casas = answer["numero_casas"]
-# print(numero_casas)
 
+numero_casas = answer["numero_casas"]
 cifrado = answer["cifrado"]
-# print(cifrado)
 
 tamanho = len(cifrado)  # 46
 answer["decifrado"] = ""
@@ -33,10 +30,9 @@ for i in range(tamanho):
     
     else:
         answer["decifrado"] += chr(ord(cifrado[i])-numero_casas)
-# print(answer["decifrado"])
 
 answer["resumo_criptografico"] = hashlib.sha1(
     answer["decifrado"].encode('utf-8')).hexdigest()
-    
+
 with open('answer.json', 'w') as json_file:
     json.dump(answer, json_file, indent=4)
